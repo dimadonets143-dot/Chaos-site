@@ -1,59 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Chaos Anarchy Donate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { background-color: #000; color: white; font-family: sans-serif; text-align: center; }
-        .shop-container { max-width: 500px; margin: auto; border: 2px solid #ff4500; border-radius: 15px; padding: 20px; background: #111; }
-        .item { background: #222; margin: 10px 0; padding: 15px; border-radius: 10px; cursor: pointer; border: 1px solid #333; transition: 0.3s; }
-        .item:hover { background: #333; border-color: #ff4500; }
-        .price { color: #00ff00; font-weight: bold; float: right; }
-        
-        /* Стиль окна (поп-ап) */
-        #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                 background: #1a1a1a; padding: 30px; border: 3px solid #ff0000; border-radius: 20px; z-index: 1000; width: 300px; }
-        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; }
-        .close-btn { background: #ff0000; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+        body { background: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .card { background: #1a1a1a; width: 90%; max-width: 400px; padding: 20px; border-radius: 15px; border-bottom: 4px solid #ff4500; margin-bottom: 20px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: scale(1.02); background: #222; }
+        .card h3 { margin: 10px 0; color: #ff4500; text-transform: uppercase; }
+        .price { color: #00ff00; font-size: 1.2em; font-weight: bold; }
+
+        /* ОКНО ПОКУПКИ */
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10; }
+        #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; border: 2px solid #ff4500; border-radius: 20px; padding: 25px; z-index: 11; width: 280px; text-align: center; box-shadow: 0 0 20px rgba(255, 69, 0, 0.5); }
+        .ds-box { background: #333; padding: 10px; border-radius: 10px; margin: 15px 0; font-size: 18px; color: #5865F2; font-weight: bold; }
+        .btn { background: #ff4500; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="shop-container">
-    <h1 style="color: #ff4500;">🔥 CHAOS ANARCHY SHOP 🔥</h1>
-    
-    <h3>👑 РАНГИ</h3>
-    <div class="item" onclick="openModal('VIP')">VIP <span class="price">35 грн</span></div>
-    <div class="item" onclick="openModal('PREMIUM')">PREMIUM <span class="price">50 грн</span></div>
-    <div class="item" onclick="openModal('MASTER')">MASTER <span class="price">100 грн</span></div>
-    <div class="item" onclick="openModal('ELITE')">ELITE <span class="price">200 грн</span></div>
+    <h1 style="color: #ff4500;">🛒 МАГАЗИН CHAOS ANARCHY</h1>
 
-    <h3>📦 ПРЕДМЕТЫ</h3>
-    <div class="item" onclick="openModal('РАЗБАН')">РАЗБАН <span class="price">20 грн</span></div>
-    <div class="item" onclick="openModal('ВСЕ СФЕРЫ')">НАБОР СФЕР <span class="price">25 грн</span></div>
-    <div class="item" onclick="openModal('TNT BLACK')">TNT BLACK <span class="price">15 грн</span></div>
-    <div class="item" onclick="openModal('TNT GREEN')">TNT GREEN <span class="price">15 грн</span></div>
-</div>
+    <div class="card" onclick="openM('VIP', '35')"><h3>👑 VIP</h3><p>Начальные возможности</p><p class="price">35 грн</p></div>
+    <div class="card" onclick="openM('ELITE', '200')"><h3>💎 ELITE</h3><p>Самый мощный ранг сервера</p><p class="price">200 грн</p></div>
+    <div class="card" onclick="openM('TNT BLACK', '15')"><h3>⚫ TNT BLACK</h3><p>Взрывает обсидиан (1-4 блока)</p><p class="price">15 грн</p></div>
+    <div class="card" onclick="openM('СФЕРЫ', '25')"><h3>🔮 ВСЕ СФЕРЫ</h3><p>Ангел, Демон и Сфера Мусора</p><p class="price">25 грн</p></div>
 
-<div id="overlay" onclick="closeModal()"></div>
-<div id="modal">
-    <h2 id="itemName" style="color: #ff4500;">КУПИТЬ</h2>
-    <p>Для покупки напиши админу в Discord:</p>
-    <div style="background: #333; padding: 10px; border-radius: 5px; font-size: 20px;">dima0622324</div>
-    <button class="close-btn" onclick="closeModal()">ЗАКРЫТЬ</button>
-</div>
+    <div id="overlay" onclick="closeM()"></div>
+    <div id="modal">
+        <h2 id="mName" style="color: #ff4500; margin: 0;">КУПИТЬ</h2>
+        <p>Напиши админу в Discord:</p>
+        <div class="ds-box">dima0622324</div>
+        <button class="btn" onclick="closeM()">ЗАКРЫТЬ</button>
+    </div>
 
-<script>
-    function openModal(name) {
-        document.getElementById('itemName').innerText = "КУПИТЬ " + name;
-        document.getElementById('modal').style.display = 'block';
-        document.getElementById('overlay').style.display = 'block';
-    }
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
-    }
-</script>
+    <script>
+        function openM(n, p) {
+            document.getElementById('mName').innerText = "КУПИТЬ " + n;
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        function closeM() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
