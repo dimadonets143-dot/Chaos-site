@@ -7,30 +7,36 @@
         body { background: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
         .card { background: #1a1a1a; width: 90%; max-width: 400px; padding: 20px; border-radius: 15px; border-bottom: 4px solid #ff4500; margin-bottom: 20px; text-align: center; cursor: pointer; transition: 0.3s; }
         .card:hover { transform: scale(1.02); background: #222; }
-        .card h3 { margin: 10px 0; color: #ff4500; text-transform: uppercase; }
-        .price { color: #00ff00; font-size: 1.2em; font-weight: bold; }
-
+        .card h3 { margin: 10px 0; color: #ff4500; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .price { color: #00ff00; font-size: 1.2em; font-weight: bold; margin-top: 10px; }
+        
         /* ОКНО ПОКУПКИ */
         #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10; }
         #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; border: 2px solid #ff4500; border-radius: 20px; padding: 25px; z-index: 11; width: 280px; text-align: center; box-shadow: 0 0 20px rgba(255, 69, 0, 0.5); }
         .ds-box { background: #333; padding: 10px; border-radius: 10px; margin: 15px 0; font-size: 18px; color: #5865F2; font-weight: bold; }
-        .btn { background: #ff4500; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .btn { background: #ff4500; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
     </style>
 </head>
 <body>
 
-    <h1 style="color: #ff4500;">🛒 МАГАЗИН CHAOS ANARCHY</h1>
+    <h1 style="color: #ff4500; text-shadow: 2px 2px #333;">🛒 МАГАЗИН CHAOS ANARCHY</h1>
 
-    <div class="card" onclick="openM('VIP', '35')"><h3>👑 VIP</h3><p>Начальные возможности</p><p class="price">35 грн</p></div>
-    <div class="card" onclick="openM('ELITE', '200')"><h3>💎 ELITE</h3><p>Самый мощный ранг сервера</p><p class="price">200 грн</p></div>
-    <div class="card" onclick="openM('TNT BLACK', '15')"><h3>⚫ TNT BLACK</h3><p>Взрывает обсидиан (1-4 блока)</p><p class="price">15 грн</p></div>
-    <div class="card" onclick="openM('СФЕРЫ', '25')"><h3>🔮 ВСЕ СФЕРЫ</h3><p>Ангел, Демон и Сфера Мусора</p><p class="price">25 грн</p></div>
+    <div class="card" onclick="openM('VIP', '35')"><h3>👑 VIP</h3><p>Начальные возможности</p><div class="price">35 грн</div></div>
+    <div class="card" onclick="openM('PREMIUM', '50')"><h3>💎 PREMIUM</h3><p>Больше команд и ресурсов</p><div class="price">50 грн</div></div>
+    <div class="card" onclick="openM('MASTER', '100')"><h3>⚒️ MASTER</h3><p>Мощные киты и права</p><div class="price">100 грн</div></div>
+    <div class="card" onclick="openM('ELITE', '200')"><h3>🌟 ELITE</h3><p>Самый мощный ранг сервера</p><div class="price">200 грн</div></div>
+
+    <div class="card" onclick="openM('РАЗБАН', '20')"><h3>🔓 РАЗБАН</h3><p>Моментальный возврат в игру</p><div class="price">20 грн</div></div>
+    <div class="card" onclick="openM('ВСЕ СФЕРЫ', '25')"><h3>🔮 ВСЕ СФЕРЫ</h3><p>Ангел, Демон и Сфера Мусора</p><div class="price">25 грн</div></div>
+    <div class="card" onclick="openM('ТОТЕМЫ', '15')"><h3>🛡️ ТОТЕМЫ (5 шт)</h3><p>Запас жизней для рейдов</p><div class="price">15 грн</div></div>
+    <div class="card" onclick="openM('TNT BLACK', '15')"><h3>⚫ TNT BLACK</h3><p>Взрывает обсидиан (1-4 блока)</p><div class="price">15 грн</div></div>
+    <div class="card" onclick="openM('TNT GREEN', '15')"><h3>🟢 TNT GREEN</h3><p>Мега-взрыв по площади</p><div class="price">15 грн</div></div>
 
     <div id="overlay" onclick="closeM()"></div>
     <div id="modal">
         <h2 id="mName" style="color: #ff4500; margin: 0;">КУПИТЬ</h2>
         <p>Напиши админу в Discord:</p>
-        <div class="ds-box">dima0622324</div>
+        <div class="ds-box">dima062324</div>
         <button class="btn" onclick="closeM()">ЗАКРЫТЬ</button>
     </div>
 
