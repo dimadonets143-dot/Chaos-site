@@ -1,26 +1,59 @@
-<div style="background: #000; color: #fff; padding: 15px; font-family: 'Segoe UI', sans-serif; border-radius: 12px; border: 2px dashed #555;">
-    <h1 style="text-align: center; color: #ff0000; text-transform: uppercase;">🔥 ДОНАТ МАГАЗИН 🔥</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chaos Anarchy Donate</title>
+    <style>
+        body { background-color: #000; color: white; font-family: sans-serif; text-align: center; }
+        .shop-container { max-width: 500px; margin: auto; border: 2px solid #ff4500; border-radius: 15px; padding: 20px; background: #111; }
+        .item { background: #222; margin: 10px 0; padding: 15px; border-radius: 10px; cursor: pointer; border: 1px solid #333; transition: 0.3s; }
+        .item:hover { background: #333; border-color: #ff4500; }
+        .price { color: #00ff00; font-weight: bold; float: right; }
+        
+        /* Стиль окна (поп-ап) */
+        #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                 background: #1a1a1a; padding: 30px; border: 3px solid #ff0000; border-radius: 20px; z-index: 1000; width: 300px; }
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; }
+        .close-btn { background: #ff0000; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="shop-container">
+    <h1 style="color: #ff4500;">🔥 CHAOS ANARCHY SHOP 🔥</h1>
     
-    <h3 style="border-left: 5px solid #ffcc00; padding-left: 10px;">👑 РАНГИ (Привилегии)</h3>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
-        <div style="background: #222; padding: 10px; border-radius: 5px; border-bottom: 2px solid #cd7f32;"><b>VIP</b> — <span style="color: #0f0;">35 грн</span></div>
-        <div style="background: #222; padding: 10px; border-radius: 5px; border-bottom: 2px solid #c0c0c0;"><b>PREMIUM</b> — <span style="color: #0f0;">50 грн</span></div>
-        <div style="background: #222; padding: 10px; border-radius: 5px; border-bottom: 2px solid #ffd700;"><b>MASTER</b> — <span style="color: #0f0;">100 грн</span></div>
-        <div style="background: #333; padding: 10px; border-radius: 5px; border-bottom: 2px solid #00ffff;"><b>ELITE</b> — <span style="color: #0f0;">200 грн</span></div>
-    </div>
+    <h3>👑 РАНГИ</h3>
+    <div class="item" onclick="openModal('VIP')">VIP <span class="price">35 грн</span></div>
+    <div class="item" onclick="openModal('PREMIUM')">PREMIUM <span class="price">50 грн</span></div>
+    <div class="item" onclick="openModal('MASTER')">MASTER <span class="price">100 грн</span></div>
+    <div class="item" onclick="openModal('ELITE')">ELITE <span class="price">200 грн</span></div>
 
-    <h3 style="border-left: 5px solid #ff4500; padding-left: 10px;">🛠 ПРЕДМЕТЫ И УСЛУГИ</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 8px;">🔓 <b>Разбан аккаунта</b> — 20 грн</li>
-        <li style="margin-bottom: 8px;">🔮 <b>Набор Сфер (Все виды)</b> — 25 грн</li>
-        <li style="margin-bottom: 8px;">🛡️ <b>Тотемы (5 шт)</b> — 15 грн</li>
-        <li style="margin-bottom: 8px;">⚫ <b>TNT Black (Obsidian Breaker)</b> — 15 грн</li>
-        <li style="margin-bottom: 8px;">🟢 <b>TNT Green (Mega Blast)</b> — 15 грн</li>
-    </ul>
-
-    <div style="margin-top: 15px; text-align: center; border-top: 1px solid #444; padding-top: 10px;">
-        <p style="font-weight: bold; color: #ffcc00;">Как купить?</p>
-        <p>Свяжись с админом в Discord или Telegram</p>
-        <p style="font-size: 11px; color: #888;">Собранные средства пойдут на покупку 6GB ОЗУ для сервера 🚀</p>
-    </div>
+    <h3>📦 ПРЕДМЕТЫ</h3>
+    <div class="item" onclick="openModal('РАЗБАН')">РАЗБАН <span class="price">20 грн</span></div>
+    <div class="item" onclick="openModal('ВСЕ СФЕРЫ')">НАБОР СФЕР <span class="price">25 грн</span></div>
+    <div class="item" onclick="openModal('TNT BLACK')">TNT BLACK <span class="price">15 грн</span></div>
+    <div class="item" onclick="openModal('TNT GREEN')">TNT GREEN <span class="price">15 грн</span></div>
 </div>
+
+<div id="overlay" onclick="closeModal()"></div>
+<div id="modal">
+    <h2 id="itemName" style="color: #ff4500;">КУПИТЬ</h2>
+    <p>Для покупки напиши админу в Discord:</p>
+    <div style="background: #333; padding: 10px; border-radius: 5px; font-size: 20px;">dima0622324</div>
+    <button class="close-btn" onclick="closeModal()">ЗАКРЫТЬ</button>
+</div>
+
+<script>
+    function openModal(name) {
+        document.getElementById('itemName').innerText = "КУПИТЬ " + name;
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
