@@ -3,65 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Донат | Chaos Anarchy</title>
+    <title>Магазин | Chaos Anarchy</title>
     <style>
-        body { background-color: #121212; color: white; font-family: sans-serif; text-align: center; margin: 0; padding-bottom: 50px; }
+        body { background-color: #121212; color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 20px; }
         .nav { background: #1e1e1e; padding: 15px; border-bottom: 2px solid #ff4500; margin-bottom: 30px; }
         .nav a { color: #ff4500; text-decoration: none; font-weight: bold; }
-        .shop-container { display: flex; justify-content: center; gap: 20px; padding: 20px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
-        .card { background: #1e1e1e; border: 2px solid #333; border-radius: 12px; padding: 20px; width: 200px; transition: 0.3s; }
-        .card:hover { border-color: #ff4500; transform: translateY(-5px); }
+        .shop-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .card { background: #1e1e1e; border: 2px solid #333; border-radius: 12px; padding: 20px; width: 220px; }
         .price { color: #00ff00; font-size: 1.5em; font-weight: bold; margin: 10px 0; }
-        .buy-btn { background: #ff4500; color: white; padding: 10px; text-decoration: none; display: block; border-radius: 5px; font-weight: bold; }
-        h1 { color: #ff4500; text-shadow: 2px 2px 5px #000; }
-        .category-title { width: 100%; margin-top: 40px; color: #aaa; text-transform: uppercase; letter-spacing: 2px; }
+        .buy-btn { background: #7289da; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; }
+        
+        /* Окно заказа */
+        #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #23272a; border: 2px solid #ff4500; padding: 25px; border-radius: 15px; z-index: 100; width: 80%; max-width: 400px; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 99; }
+        .copy-box { background: #2c2f33; padding: 10px; border-radius: 5px; margin: 15px 0; border: 1px solid #444; color: #00ff00; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="nav"><a href="index.html">← НА ГЛАВНУЮ</a></div>
 
-<h1>🛒 МАГАЗИН СЕРВЕРА</h1>
+<h1>🛒 МАГАЗИН ПРИВИЛЕГИЙ</h1>
 
 <div class="shop-container">
-    <div class="category-title">Привилегии</div>
-
-    <div class="card">
-        <h3>VIP</h3>
-        <p style="font-size: 0.8em; color: #888;">Базовые команды и префикс</p>
-        <div class="price">35 грн</div>
-        <a href="https://t.me/твой_ник" class="buy-btn">КУПИТЬ</a>
-    </div>
-
-    <div class="card">
-        <h3>Premium</h3>
-        <p style="font-size: 0.8em; color: #888;">Полет и крутые киты</p>
-        <div class="price">50 грн</div>
-        <a href="https://t.me/твой_ник" class="buy-btn">КУПИТЬ</a>
-    </div>
-
-    <div class="card">
-        <h3>Master</h3>
-        <p style="font-size: 0.8em; color: #888;">Доступ к эксклюзивным правам</p>
-        <div class="price">100 грн</div>
-        <a href="https://t.me/твой_ник" class="buy-btn">КУПИТЬ</a>
-    </div>
-
-    <div class="card">
-        <h3>Elite</h3>
-        <p style="font-size: 0.8em; color: #888;">Почти полная свобода на сервере</p>
-        <div class="price">200 грн</div>
-        <a href="https://t.me/твой_ник" class="buy-btn">КУПИТЬ</a>
-    </div>
-
-    <div class="category-title">Кейсы</div>
-
-    <div class="card">
-        <h3>Donate Кейс</h3>
-        <div class="price">20 грн</div>
-        <a href="https://t.me/твой_ник" class="buy-btn">КУПИТЬ</a>
-    </div>
+    <div class="card"><h3>VIP</h3><div class="price">35 грн</div><button class="buy-btn" onclick="openOrder('VIP', '35')">КУПИТЬ</button></div>
+    <div class="card"><h3>Premium</h3><div class="price">50 грн</div><button class="buy-btn" onclick="openOrder('Premium', '50')">КУПИТЬ</button></div>
+    <div class="card"><h3>Master</h3><div class="price">100 грн</div><button class="buy-btn" onclick="openOrder('Master', '100')">КУПИТЬ</button></div>
+    <div class="card"><h3>Elite</h3><div class="price">200 грн</div><button class="buy-btn" onclick="openOrder('Elite', '200')">КУПИТЬ</button></div>
 </div>
+
+<div class="overlay" id="overlay" onclick="closeModal()"></div>
+<div id="modal">
+    <h2 style="color: #ff4500;">Как купить?</h2>
+    <p>Добавь меня в Discord:</p>
+    <div class="copy-box">dima062324</div>
+    <p id="orderMsg" style="font-size: 0.9em; color: #ccc;"></p>
+    <button onclick="closeModal()" style="background: #ff4500; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">ПОНЯЛ!</button>
+</div>
+
+<script>
+    function openOrder(name, price) {
+        document.getElementById('orderMsg').innerText = "Напиши мне: 'Привет, хочу купить " + name + " за " + price + " грн'";
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('modal').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('modal').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
