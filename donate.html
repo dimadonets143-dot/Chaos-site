@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин | Chaos Anarchy</title>
+    <style>
+        body { background-color: #121212; color: white; font-family: sans-serif; text-align: center; margin: 0; }
+        .nav { background: #1e1e1e; padding: 20px; border-bottom: 2px solid #ff4500; }
+        .nav a { color: #ff4500; text-decoration: none; font-weight: bold; margin: 0 15px; }
+        h1 { margin-top: 40px; color: #ff4500; }
+        .shop-container { display: flex; justify-content: center; gap: 20px; padding: 40px; flex-wrap: wrap; }
+        .case-card { background: #1e1e1e; border: 2px solid #333; border-radius: 12px; padding: 25px; width: 240px; transition: 0.4s; }
+        .case-card:hover { border-color: #ff4500; transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 69, 0, 0.3); }
+        .price { color: #00ff00; font-size: 1.8em; font-weight: bold; margin: 15px 0; }
+        .btn-buy { background: #ff4500; color: white; padding: 12px; text-decoration: none; border-radius: 6px; font-weight: bold; display: block; }
+        .case-info { color: #888; font-size: 0.9em; margin-bottom: 15px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="index.html">🏠 НА ГЛАВНУЮ</a>
+</div>
+
+<h1>🛒 МАГАЗИН КЕЙСОВ</h1>
+<p>Все покупки выдаются автоматически на сервере!</p>
+
+<div class="shop-container">
+    <div class="case-card">
+        <h3>Donate Кейс</h3>
+        <p class="case-info">Шанс выбить: Админку, Креатив или Премиум статус навсегда!</p>
+        <div class="price">20 грн</div>
+        <a href="https://t.me/твой_ник" class="btn-buy">КУПИТЬ КЕЙС</a>
+    </div>
+
+    <div class="case-card">
+        <h3>Classic Кейс</h3>
+        <p class="case-info">Шанс выбить: 100,000$, топовую броню или 10 стаков железа.</p>
+        <div class="price">10 грн</div>
+        <a href="https://t.me/твой_ник" class="btn-buy">КУПИТЬ КЕЙС</a>
+    </div>
+
+    <div class="case-card">
+        <h3>Basic Кейс</h3>
+        <p class="case-info">Шанс выбить: Алмазную кирку, еду или 5,000$.</p>
+        <div class="price">5 грн</div>
+        <a href="https://t.me/твой_ник" class="btn-buy">КУПИТЬ КЕЙС</a>
+    </div>
+</div>
+
+</body>
+</html>
